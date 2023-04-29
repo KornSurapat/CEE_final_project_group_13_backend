@@ -6,13 +6,14 @@ const {
   PutCommand,
   DeleteCommand,
   ScanCommand,
+  UpdateCommand
 } = require("@aws-sdk/lib-dynamodb");
 
 const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
-
-/* exports.getGroupMembers = async (req, res) => {
+/*
+exports.getCategories = async (req, res) => {
   const params = {
-    TableName: process.env.aws_group_members_table_name,
+    TableName: process.env.aws_categories_table_name,
   };
   try {
     const data = await docClient.send(new ScanCommand(params));
@@ -22,8 +23,8 @@ const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
     console.error(err);
     res.status(500).send(err);
   }
-}; */
-
+};
+*/
 // TODO #1.1: Get items from DynamoDB
 exports.getItems = async (req, res) => {
   // You should change the response below.
