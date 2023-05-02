@@ -181,7 +181,7 @@ exports.getAssignmentDetail = (req, res) => {
       },
     };
     const profileReq = https.request(
-      `https://www.mycourseville.com/api/v1/public/get/course/assignments?cv_cid=${item_id}`,
+      `https://www.mycourseville.com/api/v1/public/get/item/assignment?item_id=${item_id}`,
       profileOptions,
       (profileRes) => {
         let profileData = "";
