@@ -95,10 +95,14 @@ exports.getProfileInformation = (req, res) => {
       }
     );
     profileReq.on("error", (err) => {
+      res.status(401);
+      res.send("Unauthorized");
       console.error(err);
     });
     profileReq.end();
   } catch (error) {
+    res.status(401);
+    res.send("Unauthorized");
     console.log(error);
     console.log("Please logout, then login again.");
   }

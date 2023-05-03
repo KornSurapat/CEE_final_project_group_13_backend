@@ -63,3 +63,33 @@ exports.deleteItem = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+// Update an item in DynamoDB
+exports.updateItem = async (req, res) => {
+  console.log("updateItem")
+  const item_id = req.params.id;
+  console.log(item_id)
+
+  const params = {
+    TableName: process.env.aws_items_table_name,
+    Key: {
+      item_id: item_id
+    },
+    //update expression status from req.body.status
+    //                  SET status = req.body.status
+    UpdateExpression:'SET #ts = :val1',
+    ExpressionAttributeValues:{
+      ":val1": req.body.status
+    },
+    ExpressionAttributeNames:{
+      "#ts": "status"
+    }
+  }
+  try {
+    const data = await docClient.send(new UpdateCommand(params));
+    res.send(data);
+  } catch(err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+};
